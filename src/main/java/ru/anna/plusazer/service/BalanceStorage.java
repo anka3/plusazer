@@ -26,4 +26,13 @@ public class BalanceStorage {
     public void init(){
         balance = 0L;
     }
+
+
+    public void transfer (BalanceStorage minus, long amount)
+    {
+        minus.balance = minus.balance + amount;
+        this.balance = this.balance - amount;
+    }
+
+
 }
