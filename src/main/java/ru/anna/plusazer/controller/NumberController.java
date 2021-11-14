@@ -1,36 +1,38 @@
 package ru.anna.plusazer.controller;
 
-import org.apache.catalina.filters.ExpiresFilter;
 import org.springframework.web.bind.annotation.*;
 import ru.anna.plusazer.controller.dto.Amount;
 import ru.anna.plusazer.controller.dto.Balance;
 import ru.anna.plusazer.service.BalanceStorage;
+import ru.anna.plusazer.service.BankService;
 
 @RestController //compile аннотация
 public class NumberController {
 
     BalanceStorage balanceStorage;
+    BankService bankService;
 
-    public NumberController(BalanceStorage balanceStorage) {
+    public NumberController(BalanceStorage balanceStorage, BankService bankService) {
         this.balanceStorage = balanceStorage;
+        this.bankService = bankService;
     }
 
-    @PostMapping("/plus")
-    public Balance plus(@RequestBody Amount amount){
+    @PostMapping("/{userId}/plus")
+    public Balance plus(@PathVariable long userId, @RequestBody Amount amount){
         System.out.println(amount.getAmount());
         Balance balancePlus = new Balance(balanceStorage.plus(amount.getAmount()));
         return balancePlus;
     }
 
-    @PostMapping("/minus")
-    public Balance minus( @RequestBody Amount amount){
+    @PostMapping("/{userId}/minus")
+    public Balance minus(@PathVariable long userId, @RequestBody Amount amount){
         System.out.println(amount.getAmount());
         Balance balanceMinus = new Balance(balanceStorage.minus(amount.getAmount()));
         return balanceMinus;
     }
 
-    @GetMapping("/balance")
-    public Balance getBalance() {
+    @GetMapping("/{userId}/balance")
+    public Balance getBalance(@PathVariable long userId) {
         return new Balance(balanceStorage.getBalance());
     }
 
