@@ -5,4 +5,5 @@ import ru.anna.plusazer.data.Wallet;
 public interface Storage {
     Wallet get(long userId);
 
+
 }

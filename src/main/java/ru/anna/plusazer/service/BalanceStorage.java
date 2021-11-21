@@ -1,6 +1,7 @@
 package ru.anna.plusazer.service;
 
 import org.springframework.stereotype.Component;
+import ru.anna.plusazer.Users;
 
 import javax.annotation.PostConstruct;
 
@@ -28,7 +29,7 @@ public class BalanceStorage {
     }
 
 
-    public void transfer (BalanceStorage minus, long amount)
+    public void transferMinus (BalanceStorage minus, long amount)
     {
         minus.balance = minus.balance + amount;
         this.balance = this.balance - amount;

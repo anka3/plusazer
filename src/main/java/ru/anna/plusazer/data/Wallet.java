@@ -7,4 +7,6 @@ public interface Wallet {
     Balance getBalance();
     Balance plus();
     Balance minus();
+
+
 }

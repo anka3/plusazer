@@ -8,6 +8,7 @@ class PlusazerApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
